@@ -55,12 +55,12 @@
 }
 
 .prompt-toast {
-  position: absolute;
-  bottom: -50px;
-  z-index: 999;
-  display: flex;
-  justify-content: center;
-  width: calc(100% - 40px);
+  // position: absolute;
+  // bottom: -50px;
+  // z-index: 999;
+  // display: flex;
+  // justify-content: center;
+  // width: calc(100% - 40px);
 
   .prompt-toast-inner {
     display: flex;
@@ -72,8 +72,8 @@
 
     border: var(--border-in-light);
     box-shadow: var(--card-shadow);
-    padding: 10px 20px;
-    border-radius: 100px;
+    padding: 9px;
+    border-radius: 10px;
 
     animation: slide-in-from-top ease 0.3s;
 
@@ -285,7 +285,6 @@
 }
 
 .chat-message-header {
-  margin-top: 20px;
   display: flex;
   align-items: center;
 
@@ -406,7 +405,7 @@
 .chat-input-panel {
   position: relative;
   width: 100%;
-  padding: 20px;
+  padding: 10px 20px;
   padding-top: 10px;
   box-sizing: border-box;
   flex-direction: column;

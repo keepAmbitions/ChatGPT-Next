@@ -4,7 +4,6 @@ import React, {
   useRef,
   useEffect,
   useMemo,
-  useCallback,
   Fragment,
 } from "react";
 
@@ -73,11 +72,10 @@ import {
   showPrompt,
   showToast,
 } from "./ui-lib";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   CHAT_PAGE_SIZE,
   LAST_INPUT_KEY,
-  MAX_RENDER_MSG_COUNT,
   Path,
   REQUEST_TIMEOUT_MS,
   UNFINISHED_INPUT,
@@ -162,24 +160,24 @@ function PromptToast(props: {
   showModal?: boolean;
   setShowModal: (_: boolean) => void;
 }) {
-  const chatStore = useChatStore();
-  const session = chatStore.currentSession();
-  const context = session.mask.context;
+  // const chatStore = useChatStore();
+  // const session = chatStore.currentSession();
+  // const context = session.mask.context;
 
   return (
     <div className={styles["prompt-toast"]} key="prompt-toast">
-      {props.showToast && (
+      {/* {props.showToast && ( */}
         <div
           className={styles["prompt-toast-inner"] + " clickable"}
           role="button"
           onClick={() => props.setShowModal(true)}
         >
           <BrainIcon />
-          <span className={styles["prompt-toast-content"]}>
+          {/* <span className={styles["prompt-toast-content"]}>
             {Locale.Context.Toast(context.length)}
-          </span>
+          </span> */}
         </div>
-      )}
+      {/* )} */}
       {props.showModal && (
         <SessionConfigModel onClose={() => props.setShowModal(false)} />
       )}
@@ -1055,11 +1053,16 @@ function _Chat() {
           >
             {!session.topic ? DEFAULT_TOPIC : session.topic}
           </div>
-          <div className="window-header-sub-title">
+          {/* <div className="window-header-sub-title">
             {Locale.Chat.SubTitle(session.messages.length)}
-          </div>
+          </div> */}
         </div>
         <div className="window-actions">
+          <PromptToast
+            showToast={!hitBottom}
+            showModal={showPromptModal}
+            setShowModal={setShowPromptModal}
+          />
           {!isMobileScreen && (
             <div className="window-action-button">
               <IconButton
@@ -1093,12 +1096,6 @@ function _Chat() {
             </div>
           )}
         </div>
-
-        <PromptToast
-          showToast={!hitBottom}
-          showModal={showPromptModal}
-          setShowModal={setShowPromptModal}
-        />
       </div>
 
       <div
